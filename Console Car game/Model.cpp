@@ -2,6 +2,7 @@
 #include <random>
 #include <windows.h>
 #include <iostream>
+#include <ctime>
 
 
 Model::Model()
@@ -30,7 +31,7 @@ void Model::changeSpeed(int state)
 	else if (state == DOWN)
 		speed += 15;
 
-	if (speed < 10) speed = 10;
+	if (speed < 10) speed = 15;
 }
 
 int Model::getSpeed() const
@@ -53,11 +54,11 @@ void Model::setScore(int points)
 	this->points = points;
 }
 
-void Model::generateAndUpdateObstacle(GameView  game_view)
+void Model::generateAndUpdateObstacle(GameView*  game_view)
 {
-	game_view.updateObstacle(obstacleAltitude, obstacleLatitude, ' ');
-	++obstacleAltitude;
-	game_view.updateObstacle(obstacleAltitude, obstacleLatitude, obstacle);
+	game_view->updateObstacle(obstacleAltitude, obstacleLatitude, ' ');
+	obstacleAltitude++;
+	game_view->updateObstacle(obstacleAltitude, obstacleLatitude, obstacle);
 	
 	if (obstacleAltitude > 20) {
 		obstacleAltitude = 0;
@@ -65,20 +66,20 @@ void Model::generateAndUpdateObstacle(GameView  game_view)
 	}
 }
 
-int Model::controlActionHandling(GameView game_view)
+int Model::controlActionHandling(GameView* game_view)
 {
 	if (GetAsyncKeyState(VK_RIGHT) == -32767)
 	{
-		if (game_view.checkCrush(RIGHT) == true)
+		if (game_view->checkCrush(RIGHT) == true)
 			return END;
-		game_view.updateCar(RIGHT);
+		game_view->updateCar(RIGHT);
 		return 0;
 	}
 	else if (GetAsyncKeyState(VK_LEFT) == -32767)
 	{
-		if (game_view.checkCrush(LEFT) == true)
+		if (game_view->checkCrush(LEFT) == true)
 			return END;
-		game_view.updateCar(LEFT);
+		game_view->updateCar(LEFT);
 		return 0;
 	}
 	else if (GetAsyncKeyState(VK_UP) == -32767)
@@ -104,10 +105,9 @@ int Model::controlActionHandling(GameView game_view)
 
 int Model::random()
 {
-//	std::default_random_engine generator;
-//	std::uniform_int_distribution<int> distribution(2, 17);
-//	return distribution(generator);
-	return rand() % 15 + 2;
+	std::mt19937 gen(time(0));
+	std::uniform_int_distribution<int> distribution(2, 16);
+	return distribution(gen);
 }
 
 

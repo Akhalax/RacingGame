@@ -4,12 +4,12 @@
 
 
 
+
 GameView::GameView()
 {
 	x = xDefault;
 	drawGameField();
 	placeCarToDefalultPosition();
-	
 }
 
 
@@ -26,7 +26,6 @@ void GameView::drawGameField()
 			road[i][j] = ' ';
 		}
 	}
-
 }
 
 void GameView::placeCarToDefalultPosition()
@@ -157,7 +156,8 @@ bool GameView::checkCrush(int side = 0)
 	{
 	case 0:
 	{
-		if (road[y - 2][x] == obstacle || road[y - 2][x - 1] == obstacle || road[y - 2][x + 1] == obstacle)
+		bool didCrached = road[y - 2][x] == obstacle || road[y - 2][x - 1] == obstacle || road[y - 2][x + 1] == obstacle;
+		if (didCrached)
 		{
 			return true;
 		}

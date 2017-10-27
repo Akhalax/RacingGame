@@ -4,7 +4,8 @@
 const char obstacle = 219;
 const char car = 'X';
 
-const int fieldSize = 20;
+const int fieldSize = 21;
+const int arraySize = 25;
 const int leftBorder = 0;
 const int rightBorder = 18;
 
@@ -40,9 +41,9 @@ public:
 	bool checkCrush(int);
 
 private:
-	char road[fieldSize][fieldSize];
+	char road[arraySize][arraySize];
 
-	int y = yDefault;
+	const int y = yDefault;
 	int x;
 
 

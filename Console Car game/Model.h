@@ -20,9 +20,9 @@ public:
 	int getScore() const;
 	void setScore(int points);
 
-	void generateAndUpdateObstacle(GameView game_view);
+	void generateAndUpdateObstacle(GameView* game_view);
 
-	int controlActionHandling(GameView game_view);
+	int controlActionHandling(GameView* game_view);
 
 
 	int random();
