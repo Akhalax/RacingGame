@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include <conio.h>
 
 #include "GameView.h"
@@ -13,8 +12,9 @@ int main()
 
 	bool startup = true;
 
-	auto game_view = new GameView();
-	auto model = new Model();
+	GameView* game_view = new GameView();
+	Random* rand = new Random();
+	Model* model = new Model(rand->getValue());
 
 	while (true) {
 		game_view->clearscreen();
@@ -35,6 +35,7 @@ int main()
 		}
 		if (model->controlActionHandling(game_view)==END)
 		{
+			game_view->gameOver();
 			return 0;
 		}
 		
@@ -47,5 +48,7 @@ int main()
 		
 		model->wait();
 	}
+	delete game_view;
+	delete model;
 	return 0;
 }

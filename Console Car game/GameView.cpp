@@ -129,12 +129,13 @@ void GameView::clearscreen()
 	SetConsoleCursorPosition(hOut, Position);
 }
 
-int GameView::y1() const
+
+const int& GameView::get_y() const
 {
 	return y;
 }
 
-int GameView::x1() const
+int& GameView::get_x()
 {
 	return x;
 }
@@ -156,28 +157,16 @@ bool GameView::checkCrush(int side = 0)
 	{
 	case 0:
 	{
-		bool didCrached = road[y - 2][x] == obstacle || road[y - 2][x - 1] == obstacle || road[y - 2][x + 1] == obstacle;
-		if (didCrached)
-		{
-			return true;
-		}
-		return false;
+		bool didCrashed = road[y - 2][x] == obstacle || road[y - 2][x - 1] == obstacle || road[y - 2][x + 1] == obstacle;
+		return didCrashed;
 	}
 	case LEFT:
 	{
-		if (road[y][x - 3] == obstacle)
-		{
-			return  true;
-		}
-		else return false;
+		return road[y][x - 3] == obstacle;
 	}
 	case  RIGHT:
 	{
-		if (road[y][x + 3] == obstacle)
-		{
-			return  true;
-		}
-		else return false;
+		return road[y][x + 3] == obstacle;
 	}
 	}
 }

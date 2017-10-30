@@ -145,10 +145,12 @@
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="GameView.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Random.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameView.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="Random.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

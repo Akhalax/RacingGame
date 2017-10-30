@@ -5,12 +5,12 @@
 #include <ctime>
 
 
-Model::Model()
+Model::Model(int rand)
 {
 	speed = 100;
 	points = 0;
 	obstacleAltitude = 0;
-	obstacleLatitude = random();
+	obstacleLatitude = rand;
 }
 
 
@@ -60,54 +60,50 @@ void Model::generateAndUpdateObstacle(GameView*  game_view)
 	obstacleAltitude++;
 	game_view->updateObstacle(obstacleAltitude, obstacleLatitude, obstacle);
 	
-	if (obstacleAltitude > 20) {
+	if (obstacleAltitude > lowerBorder) {
 		obstacleAltitude = 0;
-		obstacleLatitude = random();
+		rand.random();
+		obstacleLatitude = rand.getValue();
 	}
 }
 
 int Model::controlActionHandling(GameView* game_view)
 {
-	if (GetAsyncKeyState(VK_RIGHT) == -32767)
+	if (GetAsyncKeyState(VK_RIGHT) == codeKeyPressed)
 	{
 		if (game_view->checkCrush(RIGHT) == true)
 			return END;
 		game_view->updateCar(RIGHT);
 		return 0;
 	}
-	else if (GetAsyncKeyState(VK_LEFT) == -32767)
+	else if (GetAsyncKeyState(VK_LEFT) == codeKeyPressed)
 	{
 		if (game_view->checkCrush(LEFT) == true)
 			return END;
 		game_view->updateCar(LEFT);
 		return 0;
 	}
-	else if (GetAsyncKeyState(VK_UP) == -32767)
+	else if (GetAsyncKeyState(VK_UP) == codeKeyPressed)
 	{
 		changeSpeed(UP);
 		return 0;
 	}
-	else if (GetAsyncKeyState(VK_DOWN) == -32767)
+	else if (GetAsyncKeyState(VK_DOWN) == codeKeyPressed)
 	{
 		changeSpeed(DOWN);
 		return 0;
 	}
-	else if (GetAsyncKeyState(VK_ESCAPE) == -32767)
+	else if (GetAsyncKeyState(VK_ESCAPE) == codeKeyPressed)
 	{
 		return END;
 	}
-	else if (GetAsyncKeyState(VK_RETURN) == -32767)
+	else if (GetAsyncKeyState(VK_RETURN) == codeKeyPressed)
 	{
 		std::cin.get();
 		return 0;
 	}
 }
 
-int Model::random()
-{
-	std::mt19937 gen(time(0));
-	std::uniform_int_distribution<int> distribution(2, 16);
-	return distribution(gen);
-}
+
 
 

@@ -32,20 +32,19 @@ public:
 	void displayScore(int points);
 
 	void clearscreen();
-	
-	int y1() const;
-	int x1() const;
-	void set_x(int x);
+
 
 	void gameOver();
 	bool checkCrush(int);
 
+	const int& get_y() const;
+	int& get_x();
+	void set_x(int x);
 private:
 	char road[arraySize][arraySize];
 
 	const int y = yDefault;
 	int x;
-
 
 };
 
