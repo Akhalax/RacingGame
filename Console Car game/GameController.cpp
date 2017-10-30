@@ -50,5 +50,6 @@ int main()
 	}
 	delete game_view;
 	delete model;
+	delete rand;
 	return 0;
 }
