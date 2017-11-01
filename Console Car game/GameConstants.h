@@ -9,19 +9,22 @@ namespace GameConstats
 	static const int LOWER_BORDER = 20;
 	static const int CODE_KEY_PRESSED = -32767;
 
-	const char OBSTACLE = 219;
-	const char CAR = 'X';
+	static const char OBSTACLE = 219;
+	static const char CAR = 'X';
 
-	const int FIELD_SIZE = 21;
-	const int ARRAY_SIZE = 25;
-	const int LEFT_BORDER = 0;
-	const int RIGHT_BORDER = 18;
+	static const int FIELD_SIZE = 21;
+	static const int ARRAY_SIZE = 500;
+	static const int LEFT_BORDER = 0;
+	static const int RIGHT_BORDER = 18;
+	static const int LEFT_OBSTACLE_BORDER = 2;
+	static const int RIGHT_OBSTACLE_BORDER = 16;
 
-	const int Y_DEFAULT = 17;
-	const int X_DEFAULT = 9;
+ 
+	static const int Y_DEFAULT = 17;
+	static const int X_DEFAULT = 9;
 
-	const int LEFT = 789456;
-	const int RIGHT = 789465;
+	static const int LEFT = 789456;
+	static const int RIGHT = 789465;
 }
 
 

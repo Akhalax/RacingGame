@@ -142,13 +142,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameController.cpp" />
+    <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameView.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Random.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameConstants.h" />
+    <ClInclude Include="GameLoop.h" />
     <ClInclude Include="GameView.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Random.h" />

@@ -8,7 +8,9 @@
 class Model
 {
 public:
-	Model(int rand);
+	Model(int rand_)
+		: speed(100), points(0), obstacleAltitude(0), obstacleLatitude(rand_)
+	{}
 	~Model();
 
 	void wait();
@@ -19,9 +21,9 @@ public:
 	 int getScore() const;
 	 void setScore(int points);
 
-	void generateAndUpdateObstacle(GameView* game_view);
+	void generateAndUpdateObstacle(GameView& game_view);
 
-	int controlActionHandling(GameView* game_view);
+	int controlActionHandling(GameView& game_view);
 
 
 private:

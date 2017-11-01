@@ -6,14 +6,6 @@
 #include "GameConstants.h"
 
 
-Model::Model(int rand)
-{
-	speed = 100;
-	points = 0;
-	obstacleAltitude = 0;
-	obstacleLatitude = rand;
-}
-
 
 Model::~Model()
 {
@@ -62,11 +54,11 @@ inline void Model::setScore(int points)
 	this->points = points;
 }
 
-void Model::generateAndUpdateObstacle(GameView*  game_view)
+void Model::generateAndUpdateObstacle(GameView&  game_view)
 {
-	game_view->updateObstacle(obstacleAltitude, obstacleLatitude, ' ');
+	game_view.updateObstacle(obstacleAltitude, obstacleLatitude, ' ');
 	obstacleAltitude++;
-	game_view->updateObstacle(obstacleAltitude, obstacleLatitude, GameConstats::OBSTACLE);
+	game_view.updateObstacle(obstacleAltitude, obstacleLatitude, GameConstats::OBSTACLE);
 	
 	if (obstacleAltitude > GameConstats::LOWER_BORDER) {
 		obstacleAltitude = 0;
@@ -75,20 +67,20 @@ void Model::generateAndUpdateObstacle(GameView*  game_view)
 	}
 }
 
-int Model::controlActionHandling(GameView* game_view)
+int Model::controlActionHandling(GameView& game_view)
 {
 	bool success = true;
 	if (GetAsyncKeyState(VK_RIGHT) == GameConstats::CODE_KEY_PRESSED)
 	{
-		if (game_view->checkCrush(GameConstats::RIGHT) == true)
+		if (game_view.checkCrush(GameConstats::RIGHT) == true)
 			return GameConstats::END;
-		game_view->updateCar(GameConstats::RIGHT);
+		game_view.updateCar(GameConstats::RIGHT);
 	}
 	else if (GetAsyncKeyState(VK_LEFT) == GameConstats::CODE_KEY_PRESSED)
 	{
-		if (game_view->checkCrush(GameConstats::LEFT) == true)
+		if (game_view.checkCrush(GameConstats::LEFT) == true)
 			return GameConstats::END;
-		game_view->updateCar(GameConstats::LEFT);
+		game_view.updateCar(GameConstats::LEFT);
 	}
 	else if (GetAsyncKeyState(VK_UP) == GameConstats::CODE_KEY_PRESSED)
 	{
