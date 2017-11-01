@@ -3,6 +3,7 @@
 
 #include "GameView.h"
 #include "Model.h"
+#include "GameConstants.h"
 
 using namespace std;
 
@@ -15,6 +16,8 @@ int main()
 	GameView* game_view = new GameView();
 	Random* rand = new Random();
 	Model* model = new Model(rand->getValue());
+
+
 
 	while (true) {
 		game_view->clearscreen();
@@ -33,16 +36,15 @@ int main()
 			_getch();
 			startup = false;
 		}
-		if (model->controlActionHandling(game_view)==END)
+		if (model->controlActionHandling(game_view)== GameConstats::END)
 		{
 			game_view->gameOver();
-			return 0;
+			break;
 		}
 		
-
 		if (game_view->checkCrush(0) == true) {
 			game_view->gameOver();
-			return 0;
+			break;
 		}
 
 		

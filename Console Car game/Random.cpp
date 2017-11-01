@@ -23,7 +23,7 @@ void Random::setValue(int value)
 	this->value = value;
 }
 
-void Random::random()
+inline void Random::random()
 {
 	std::mt19937 gen(time(0));
 	std::uniform_int_distribution<int> distribution(2, 16);

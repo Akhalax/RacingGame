@@ -148,6 +148,7 @@
     <ClCompile Include="Random.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameConstants.h" />
     <ClInclude Include="GameView.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Random.h" />

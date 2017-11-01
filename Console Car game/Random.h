@@ -8,10 +8,11 @@ public:
 	int getValue() const;
 	void setValue(int value);
 
-	void random();
+	inline void random();
 
 private:
 	int value;
+
 
 };
 

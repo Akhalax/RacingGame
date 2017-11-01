@@ -1,19 +1,7 @@
 #ifndef GAMEVIEW_H    
 #define GAMEVIEW_H
+#include "GameConstants.h"
 
-const char obstacle = 219;
-const char car = 'X';
-
-const int fieldSize = 21;
-const int arraySize = 25;
-const int leftBorder = 0;
-const int rightBorder = 18;
-
-const int yDefault = 17;
-const int xDefault = 9;
-
-const int LEFT = 789456;
-const int RIGHT = 789465;
 
 class GameView
 {
@@ -33,18 +21,19 @@ public:
 
 	void clearscreen();
 
-
 	void gameOver();
 	bool checkCrush(int);
 
-	const int& get_y() const;
-	int& get_x();
-	void set_x(int x);
-private:
-	char road[arraySize][arraySize];
+	inline int getY() const;
+	inline int getX() const;
+	inline void setX(int x);
 
-	const int y = yDefault;
+private:
+	char road[GameConstats::ARRAY_SIZE][GameConstats::ARRAY_SIZE];
+
+	const int y = GameConstats::Y_DEFAULT;
 	int x;
+
 
 };
 

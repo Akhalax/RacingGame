@@ -1,13 +1,12 @@
 #include "GameView.h"
 #include <iostream>
 #include <windows.h>
-
-
+#include "GameConstants.h"
 
 
 GameView::GameView()
 {
-	x = xDefault;
+	x = GameConstats::X_DEFAULT;
 	drawGameField();
 	placeCarToDefalultPosition();
 }
@@ -19,10 +18,10 @@ GameView::~GameView()
 
 void GameView::drawGameField()
 {
-	for (int i = 0; i < fieldSize; ++i) {
-		for (int j = 0; j < fieldSize; ++j) {
-			road[i][leftBorder] = '|';
-			road[i][rightBorder] = '|';
+	for (int i = 0; i < GameConstats::FIELD_SIZE; ++i) {
+		for (int j = 0; j < GameConstats::FIELD_SIZE; ++j) {
+			road[i][GameConstats::LEFT_BORDER] = '|';
+			road[i][GameConstats::RIGHT_BORDER] = '|';
 			road[i][j] = ' ';
 		}
 	}
@@ -30,20 +29,20 @@ void GameView::drawGameField()
 
 void GameView::placeCarToDefalultPosition()
 {
-	road[yDefault][x] = 'X';
-	road[yDefault][x + 1] = '|';
-	road[yDefault][x - 1] = '|';
-	road[yDefault + 1][x - 1] = 'o';
-	road[yDefault + 1][x + 1] = 'o';
-	road[yDefault - 1][x - 1] = 'o';
-	road[yDefault - 1][x + 1] = 'o';
+	road[GameConstats::Y_DEFAULT][x] = 'X';
+	road[GameConstats::Y_DEFAULT][x + 1] = '|';
+	road[GameConstats::Y_DEFAULT][x - 1] = '|';
+	road[GameConstats::Y_DEFAULT + 1][x - 1] = 'o';
+	road[GameConstats::Y_DEFAULT + 1][x + 1] = 'o';
+	road[GameConstats::Y_DEFAULT - 1][x - 1] = 'o';
+	road[GameConstats::Y_DEFAULT - 1][x + 1] = 'o';
 
 }
 
 void GameView::displayField()
 {
-	for (int i = 0; i < fieldSize-1; ++i) {
-		for (int j = 0; j < fieldSize-1; ++j) {
+	for (int i = 0; i < GameConstats::FIELD_SIZE-1; ++i) {
+		for (int j = 0; j < GameConstats::FIELD_SIZE-1; ++j) {
 			std::cout << road[i][j];
 			if (j >= 19) {
 				std::cout << std::endl;
@@ -66,7 +65,7 @@ void GameView::updateObstacle(int obstacleAltitude, int obstacleLatitude, char c
 
 void GameView::updateCar(int side)
 {
-	if (side == LEFT)
+	if (side == GameConstats::LEFT)
 	{
 		if (road[y][x - 3] != '|')
 		{
@@ -85,7 +84,6 @@ void GameView::updateCar(int side)
 			road[y + 1][x + 1] = 'o';
 			road[y - 1][x - 1] = 'o';
 			road[y - 1][x + 1] = 'o';
-			return;
 		}
 	}
 	else if (road[y][x + 3] != '|') {
@@ -130,21 +128,6 @@ void GameView::clearscreen()
 }
 
 
-const int& GameView::get_y() const
-{
-	return y;
-}
-
-int& GameView::get_x()
-{
-	return x;
-}
-
-void GameView::set_x(int x)
-{
-	this->x = x;
-}
-
 void GameView::gameOver()
 {
 	std::cout << "\n\nYou crashed!\n" << std::endl;
@@ -157,18 +140,33 @@ bool GameView::checkCrush(int side = 0)
 	{
 	case 0:
 	{
-		bool didCrashed = road[y - 2][x] == obstacle || road[y - 2][x - 1] == obstacle || road[y - 2][x + 1] == obstacle;
+		const bool didCrashed = road[y - 2][x] == GameConstats::OBSTACLE || road[y - 2][x - 1] == GameConstats::OBSTACLE || road[y - 2][x + 1] == GameConstats::OBSTACLE;
 		return didCrashed;
 	}
-	case LEFT:
+	case GameConstats::LEFT:
 	{
-		return road[y][x - 3] == obstacle;
+		return road[y][x - 3] == GameConstats::OBSTACLE;
 	}
-	case  RIGHT:
+	case GameConstats::RIGHT:
 	{
-		return road[y][x + 3] == obstacle;
+		return road[y][x + 3] == GameConstats::OBSTACLE;
 	}
 	}
+}
+
+inline int GameView::getY() const
+{
+	return y;
+}
+
+inline int GameView::getX() const
+{
+	return x;
+}
+
+inline void GameView::setX(int x)
+{
+	this->x = x;
 }
 
 
